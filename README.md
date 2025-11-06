@@ -18,3 +18,6 @@
 ### License
 Released under the MIT License. © 2025 Peter Willard
 
+### You are my testers
+
+I make no guarantees this code is bug free. (sorry in advance)  Do regular backups. 
