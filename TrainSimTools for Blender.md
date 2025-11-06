@@ -81,7 +81,7 @@ If it already exists, it’ll just say “nothing to do.”
 
 ### 🔁 2. Swap Collection Names
 
-Why swap collection names? Sometimes you want to text things out.  Sometimes you want to manipulate special baking setups for ambient occlusion. This lets you quickly shift objects around, in and out of your MAIN export collection layout.
+Why swap collection names? Sometimes you want to test things out.  Sometimes you want to manipulate special baking setups for ambient occlusion. This lets you quickly shift objects around, in and out of your MAIN export collection layout.
 
 Swaps the names of two existing collections safely:
 1. Choose **Collection 1** and **Collection 2** from the drop-downs.
