@@ -61,13 +61,13 @@ Collections in Blender are like folders for organizing your train model parts.
 ### 🏗 1. Create Initial Collection Setup
 Press **“Create Initial Collection Setup”** to instantly build a standard layout:
 
-MAIN
-├── MAIN_300
-├── MAIN_600
-├── MAIN_1000
-├── MAIN_1500
-Scratchpad
-├── (links to the same MAIN_xxx collections)
+MAIN  
+├── MAIN_300  
+├── MAIN_600  
+├── MAIN_1000  
+├── MAIN_1500  
+Scratchpad  
+├── (links to the same MAIN_xxx collections)  
 
 
 **MAIN** = your working collections.  
