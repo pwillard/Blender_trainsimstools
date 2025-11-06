@@ -1,0 +1,20 @@
+# TrainSimTools
+
+**TrainSimTools** is a Blender add-on providing some tools for OpenRails content creators.
+
+### Features
+- **Texture Filename Changer**
+  - Swap directory, search/replace, mapping, or prefix/suffix updates.
+  - Optional batch renaming of image datablocks.
+- **Collection Tools**
+  - Creates the standard `MAIN` / `Scratchpad` hierarchy.
+  - Safe swap of collection names.
+
+### Installation
+1. Download or clone this repository.
+2. In Blender, open **Edit → Preferences → Add-ons → Install…**
+3. Select `trainsimtools.py` (or the ZIP file) and enable **TrainSimTools**.
+
+### License
+Released under the MIT License. © 2025 Peter Willard
+
