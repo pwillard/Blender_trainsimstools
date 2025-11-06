@@ -56,7 +56,9 @@ You can:
 
 ## 🗂 Collection Tools
 
-Collections in Blender are like folders for organizing your train model parts.
+Collections in Blender are like folders for organizing your train model parts. The MSTS/ORTS Blender exporter tool expects the objects to be exported to reside in specially named collections.  This tool will create those exportable collection names as well as a scratchpad collection.  
+
+This tool is for those people who model many different objects, not just Train Simulator and don't which to hard code these special collections into their default .blend startup file. You can quickly create the MAIN collection and additional LOD collections when you start a new model with a simple button press.
 
 ### 🏗 1. Create Initial Collection Setup
 Press **“Create Initial Collection Setup”** to instantly build a standard layout:
@@ -78,6 +80,9 @@ If it already exists, it’ll just say “nothing to do.”
 ---
 
 ### 🔁 2. Swap Collection Names
+
+Why swap collection names? Sometimes you want to text things out.  Sometimes you want to manipulate special baking setups for ambient occlusion. This lets you quickly shift objects around, in and out of your MAIN export collection layout.
+
 Swaps the names of two existing collections safely:
 1. Choose **Collection 1** and **Collection 2** from the drop-downs.
 2. Click **Swap Collection Names**.
