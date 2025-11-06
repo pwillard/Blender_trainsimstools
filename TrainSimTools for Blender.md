@@ -1,6 +1,6 @@
 # 🚂 TrainSimTools for Blender
 
-**TrainSimTools** is a Blender add-on that helps *train-simulation content creators* manage textures and collections faster and more safely.  
+**TrainSimTools** is a Blender add-on that helps *MSTS/OpenRails* creators manage textures and collections faster and more safely.  
 It’s simple enough for beginners, yet powerful enough for complex scenes.
 
 ---
@@ -54,6 +54,10 @@ You can:
 
 ---
 
+## Fix UV Maps
+
+This is a fix for imported models that have UV Map assignments/naming that is not compatible with the requirements for the MSTS/OR Exporter.  This was formerly available a  standalone script that would need to be run.  Now its a single button click, with feed back on the bottom of the screen.
+
 ## 🗂 Collection Tools
 
 Collections in Blender are like folders for organizing your train model parts. The MSTS/ORTS Blender exporter tool expects the objects to be exported to reside in specially named collections.  This tool will create those exportable collection names as well as a scratchpad collection.  
@@ -103,8 +107,9 @@ At the bottom of the TrainSimTools tab is a small info section showing:
 ## 🧠 Why It’s Useful
 
 - 🚀 Change textures in seconds
-- 🧰 Maintain a standard collection layout for exports Open Rails.
-- 🧑‍🏫 Designed to be **easy enough for beginners** and useful for experienced creators.
+- ⚙️ Fix non-compliant UV Map naming
+- 🧰 Maintain a standard collection layout for exports Open Rails
+- 🧑‍🏫 Designed to be **easy enough for beginners** and useful for experienced creators
 
 ---
 

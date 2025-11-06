@@ -9,6 +9,9 @@
 - **Collection Tools**
   - Creates the standard `MAIN` / `Scratchpad` hierarchy.
   - Safe swap of collection names.
+- **Fix UV MAP**
+  - Often, when importing models from other formats, UV Maps are incompatible with the ORTS exporter.
+  - This applies a simple fix to make sure the UV Map is named correctly.
 
 ### Installation
 1. Download or clone this repository.

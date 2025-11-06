@@ -1,7 +1,7 @@
 bl_info = {
     "name": "TrainSimTools",
     "author": "Pete Willard",
-    "version": (1, 3, 1),
+    "version": (1, 3, 2),
     "blender": (3, 0, 0),
     "location": "3D Viewport > N-Panel > TrainSimTools",
     "description": "Utilities for train-sim content: texture filename changer (with batch rename) and collection management tools.",
@@ -490,7 +490,7 @@ class OBJECT_OT_SwapCollections(Operator):
         coll2.name = name1
         coll1.name = name2
 
-        self.report({'INFO'}, f"Swapped '{name1}' ↔ '{name2}' successfully!")
+        self.report({'INFO'}, f"Swapped '{name1}' ? '{name2}' successfully!")
         return {'FINISHED'}
 
 
@@ -638,6 +638,13 @@ class TXCH_PT_Panel(Panel):
             rbox.prop(p, "rn_dry_run")
             rbox.operator("txch.rename_images", icon='SORTALPHA')
 
+        # UV tools (simple)
+        layout.separator()
+        uvbox = layout.box()
+        uvbox.label(text="UV Tools", icon='GROUP_UVS')
+        uvbox.operator("tst.fix_uv_simple", icon='UV')
+
+
 
 class VIEW3D_PT_SwapCollections(Panel):
     bl_label = "Collection Tools"
@@ -660,6 +667,29 @@ class VIEW3D_PT_SwapCollections(Panel):
         layout.operator("object.swap_collections", icon='ARROW_LEFTRIGHT')
 
 
+ # =============================
+# Simple UV Fix Operator
+
+class TST_OT_FixUVSimple(bpy.types.Operator):
+    bl_idname = "tst.fix_uv_simple"
+    bl_label = "Fix UV Maps (Simple)"
+    bl_description = "Ensure every mesh has a UVMap; create and name one if missing."
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        fixed = 0
+        for mesh in bpy.data.meshes:
+            if len(mesh.uv_layers) == 0:
+                mesh.uv_layers.new()
+            if not mesh.uv_layers.get('UVMap'):
+                firstmap = mesh.uv_layers[0]
+                firstmap.name = 'UVMap'
+            fixed += 1
+        self.report({'INFO'}, f"Checked {len(bpy.data.meshes)} meshes. Updated: {fixed}.")
+        return {'FINISHED'}
+
+
+
 # =============================
 # Version Info Panel
 # =============================
@@ -672,7 +702,7 @@ class VIEW3D_PT_TrainSimToolsInfo(Panel):
 
     def draw(self, context):
         layout = self.layout
-        layout.label(text="TrainSimTools v1.3.1")
+        layout.label(text="TrainSimTools v1.3.2")
         layout.label(text="Combined utilities for texture + collections")
         layout.label(text="© Pete Willard")
         layout.operator('wm.url_open', text='Visit Documentation', icon='HELP').url = 'https://github.com/pwillard/trainsimstools'
@@ -691,6 +721,8 @@ classes = (
     OBJECT_OT_SwapCollections,
     OBJECT_OT_CreateInitialCollections,
     VIEW3D_PT_SwapCollections,
+    # UV simple operator
+    TST_OT_FixUVSimple,
     # Info panel
     VIEW3D_PT_TrainSimToolsInfo,
     )
