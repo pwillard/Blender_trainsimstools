@@ -102,9 +102,8 @@ At the bottom of the TrainSimTools tab is a small info section showing:
 
 ## 🧠 Why It’s Useful
 
-- 🚀 Fix missing textures in seconds instead of hunting through folders.
-- 🎨 Keep consistent, portable paths for shared .blend files.
-- 🧰 Maintain a standard collection layout for exports (Open Rails, Trainz, etc.).
+- 🚀 Change textures in seconds
+- 🧰 Maintain a standard collection layout for exports Open Rails.
 - 🧑‍🏫 Designed to be **easy enough for beginners** and useful for experienced creators.
 
 ---
