@@ -141,5 +141,5 @@ MIT License
 
 ## 🌐 Links
 - Website: [http://railsimstuff.com](http://railsimstuff.com)
-- GitHub: [https://github.com/pwillard/trainsimtools](https://github.com/pwillard/trainsimtools)
+- GitHub: [https://github.com/pwillard/trainsimtools](https://github.com/pwillard/Blender_trainsimtools)
 - Blender Add-on Docs: [https://docs.blender.org/manual/en/latest/editors/preferences/addons.html](https://docs.blender.org/manual/en/latest/editors/preferences/addons.html)
