@@ -54,9 +54,18 @@ You can:
 
 ---
 
-## Fix UV Maps
+## ✨ Fix UV Maps
 
 This is a fix for imported models that have UV Map assignments/naming that is not compatible with the requirements for the MSTS/OR Exporter.  This was formerly available a  standalone script that would need to be run.  Now its a single button click, with feed back on the bottom of the screen.
+
+## ✨ Recent Changes
+
+- Adds "Bounding Box Tools" section in TrainSimTools panel.
+- Exports bbox_export.csv with bounding boxes for selected mesh objects.
+- Uses 3D Cursor as origin and -Y as forward.
+- 3-decimal precision for all offsets.
+- If the .blend is saved: CSV is written next to it.
+- If unsaved: CSV falls back to Blender's temp directory or your home folder.
 
 ## 🗂 Collection Tools
 
