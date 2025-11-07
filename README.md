@@ -19,7 +19,7 @@ Version 1.3.3
 
 ### Installation
 
-1. Use the latest released version of TrainSimTools.zip from the [releases page](https://github.com/pwillard/Blender_trainsimstools/releases/tag/1.3.3).
+1. Use the latest released version of TrainSimTools.zip from the [releases page](https://github.com/pwillard/Blender_trainsimstools/releases/).
 2. In Blender, open **Edit → Preferences → Add-ons → Install…**
 3. Select the downloaded`.zip` and enable **TrainSimTools**.
 
