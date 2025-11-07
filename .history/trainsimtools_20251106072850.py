@@ -536,7 +536,6 @@ class OBJECT_OT_CreateInitialCollections(Operator):
         if s_created:
             created.append("Scratchpad")
 
-        """   === Problem area due to replicated names... this issue crept back in... my bad.        
         for sub in [main_300, main_600, main_1000, main_1500]:
             if not sub:
                 continue
@@ -547,23 +546,7 @@ class OBJECT_OT_CreateInitialCollections(Operator):
                     scratchpad.children.link(sub)
                     linked.append(sub.name)
                 except Exception:
-                    pass """
-
-        for suffix, main_coll in zip(["300", "600", "1000", "1500"],
-                                    [main_300, main_600, main_1000, main_1500]):
-            if not main_coll:
-                continue
-            sp_name = f"Scratchpad_{suffix}"
-            if sp_name not in bpy.data.collections:
-                sp_sub = bpy.data.collections.new(sp_name)
-                scratchpad.children.link(sp_sub)
-                created.append(sp_name)
-            else:
-                sp_sub = bpy.data.collections[sp_name]
-                # ensure it's linked under Scratchpad
-                if sp_sub not in scratchpad.children:
-                    scratchpad.children.link(sp_sub)
-            linked.append(sp_name)
+                    pass
 
         if not created and not linked:
             self.report({'INFO'}, "All collections already exist — nothing to do.")
