@@ -511,7 +511,7 @@ class OBJECT_OT_CreateInitialCollections(Operator):
         else:
             return bpy.data.collections[name], False
 
-class OBJECT_OT_CreateInitialCollections(bpy.types.Operator):
+   class OBJECT_OT_CreateInitialCollections(bpy.types.Operator):
     bl_idname = "object.create_initial_collections"
     bl_label = "Create Initial Collection Setup"
     bl_description = "Create a default collection structure (MAIN & Scratchpad) at the top level"

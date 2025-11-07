@@ -1,8 +1,8 @@
 bl_info = {
     "name": "TrainSimTools",
     "author": "Pete Willard",
-    "version": (1, 3, 3),
-    "blender": (4, 3, 0),
+    "version": (1, 3, 2),
+    "blender": (3, 0, 0),
     "location": "3D Viewport > N-Panel > TrainSimTools",
     "description": "Utilities for train-sim content: texture filename changer (with batch rename) and collection management tools.",
     "category": "3D View",
@@ -511,7 +511,7 @@ class OBJECT_OT_CreateInitialCollections(Operator):
         else:
             return bpy.data.collections[name], False
 
-class OBJECT_OT_CreateInitialCollections(bpy.types.Operator):
+   class OBJECT_OT_CreateInitialCollections(bpy.types.Operator):
     bl_idname = "object.create_initial_collections"
     bl_label = "Create Initial Collection Setup"
     bl_description = "Create a default collection structure (MAIN & Scratchpad) at the top level"

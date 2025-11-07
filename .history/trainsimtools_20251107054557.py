@@ -511,7 +511,7 @@ class OBJECT_OT_CreateInitialCollections(Operator):
         else:
             return bpy.data.collections[name], False
 
-class OBJECT_OT_CreateInitialCollections(bpy.types.Operator):
+   class OBJECT_OT_CreateInitialCollections(bpy.types.Operator):
     bl_idname = "object.create_initial_collections"
     bl_label = "Create Initial Collection Setup"
     bl_description = "Create a default collection structure (MAIN & Scratchpad) at the top level"
@@ -533,56 +533,56 @@ class OBJECT_OT_CreateInitialCollections(bpy.types.Operator):
 
         return coll
 
-    def execute(self, context):
-        created = []
-        linked = []
+def execute(self, context):
+    created = []
+    linked = []
 
-        # MAIN at top level
-        main = self.create_collection(context, "MAIN")
-        if "MAIN" not in created:
-            created.append("MAIN")
+    # MAIN at top level
+    main = self.create_collection(context, "MAIN")
+    if "MAIN" not in created:
+        created.append("MAIN")
 
-        # MAIN_* under MAIN
-        main_300 = self.create_collection(context, "MAIN_300", parent_collection=main)
-        main_600 = self.create_collection(context, "MAIN_600", parent_collection=main)
-        main_1000 = self.create_collection(context, "MAIN_1000", parent_collection=main)
-        main_1500 = self.create_collection(context, "MAIN_1500", parent_collection=main)
+    # MAIN_* under MAIN
+    main_300 = self.create_collection(context, "MAIN_300", parent_collection=main)
+    main_600 = self.create_collection(context, "MAIN_600", parent_collection=main)
+    main_1000 = self.create_collection(context, "MAIN_1000", parent_collection=main)
+    main_1500 = self.create_collection(context, "MAIN_1500", parent_collection=main)
 
-        # Scratchpad at top level
-        scratchpad = self.create_collection(context, "Scratchpad")
-        if "Scratchpad" not in created:
-            created.append("Scratchpad")
+    # Scratchpad at top level
+    scratchpad = self.create_collection(context, "Scratchpad")
+    if "Scratchpad" not in created:
+        created.append("Scratchpad")
 
-        # Scratchpad_* under Scratchpad (unique names, no linking to MAIN)
-        for suffix in ["300", "600", "1000", "1500"]:
-            sp_name = f"Scratchpad_{suffix}"
-            sp_coll = bpy.data.collections.get(sp_name)
-            if not sp_coll:
-                sp_coll = bpy.data.collections.new(sp_name)
-                scratchpad.children.link(sp_coll)
-                created.append(sp_name)
-            else:
-                if sp_coll not in scratchpad.children:
-                    scratchpad.children.link(sp_coll)
-            linked.append(sp_name)
-
-        if not created and not linked:
-            self.report({'INFO'}, "All collections already exist — nothing to do.")
+    # Scratchpad_* under Scratchpad (unique names, no linking to MAIN)
+    for suffix in ["300", "600", "1000", "1500"]:
+        sp_name = f"Scratchpad_{suffix}"
+        sp_coll = bpy.data.collections.get(sp_name)
+        if not sp_coll:
+            sp_coll = bpy.data.collections.new(sp_name)
+            scratchpad.children.link(sp_coll)
+            created.append(sp_name)
         else:
-            msg = []
-            if created:
-                msg.append(f"Created: {', '.join(sorted(set(created)))}")
-            if linked:
-                msg.append(f"Ensured under Scratchpad: {', '.join(sorted(set(linked)))}")
-            self.report({'INFO'}, " | ".join(msg))
+            if sp_coll not in scratchpad.children:
+                scratchpad.children.link(sp_coll)
+        linked.append(sp_name)
 
-        # redraw views
-        for window in bpy.context.window_manager.windows:
-            for area in window.screen.areas:
-                if area.type == 'VIEW_3D':
-                    area.tag_redraw()
+    if not created and not linked:
+        self.report({'INFO'}, "All collections already exist — nothing to do.")
+    else:
+        msg = []
+        if created:
+            msg.append(f"Created: {', '.join(sorted(set(created)))}")
+        if linked:
+            msg.append(f"Ensured under Scratchpad: {', '.join(sorted(set(linked)))}")
+        self.report({'INFO'}, " | ".join(msg))
 
-        return {'FINISHED'}
+    # redraw views
+    for window in bpy.context.window_manager.windows:
+        for area in window.screen.areas:
+            if area.type == 'VIEW_3D':
+                area.tag_redraw()
+
+    return {'FINISHED'}
 
 
 
