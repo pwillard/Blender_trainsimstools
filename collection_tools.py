@@ -23,8 +23,8 @@ class SwapCollectionsProperties(PropertyGroup):
 
 class OBJECT_OT_SwapCollections(Operator):
     bl_idname = "object.swap_collections"
-    bl_label = "Swap Collection Names"
-    bl_description = "Swap the names of two selected collections"
+    bl_label = "Swap Collection Contents"
+    bl_description = "Swap the direct objects and child collections between two selected collections"
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
@@ -44,13 +44,25 @@ class OBJECT_OT_SwapCollections(Operator):
         if not coll1 or not coll2:
             self.report({"ERROR"}, "One or both collections not found.")
             return {"CANCELLED"}
+        if collection_contains(coll1, coll2) or collection_contains(coll2, coll1):
+            self.report({"ERROR"}, "Cannot swap contents between nested collections.")
+            return {"CANCELLED"}
 
-        temp_name = f"{coll1.name}_TEMP"
-        coll1.name = temp_name
-        coll2.name = name1
-        coll1.name = name2
+        objects1 = list(coll1.objects)
+        objects2 = list(coll2.objects)
+        children1 = list(coll1.children)
+        children2 = list(coll2.children)
 
-        self.report({"INFO"}, f"Swapped '{name1}' and '{name2}' successfully.")
+        set_direct_objects(coll1, objects2)
+        set_direct_objects(coll2, objects1)
+        set_direct_children(coll1, children2)
+        set_direct_children(coll2, children1)
+
+        self.report(
+            {"INFO"},
+            f"Swapped contents of '{name1}' and '{name2}' successfully.",
+        )
+        tag_view3d_redraw()
         return {"FINISHED"}
 
 
@@ -119,3 +131,34 @@ def tag_view3d_redraw():
         for area in window.screen.areas:
             if area.type == "VIEW_3D":
                 area.tag_redraw()
+
+
+def collection_contains(parent, child):
+    for nested in parent.children:
+        if nested == child or collection_contains(nested, child):
+            return True
+    return False
+
+
+def set_direct_objects(collection, target_objects):
+    target_names = {obj.name for obj in target_objects}
+
+    for obj in list(collection.objects):
+        if obj.name not in target_names:
+            collection.objects.unlink(obj)
+
+    for obj in target_objects:
+        if obj.name not in collection.objects:
+            collection.objects.link(obj)
+
+
+def set_direct_children(collection, target_children):
+    target_names = {child.name for child in target_children}
+
+    for child in list(collection.children):
+        if child.name not in target_names:
+            collection.children.unlink(child)
+
+    for child in target_children:
+        if child.name not in collection.children:
+            collection.children.link(child)

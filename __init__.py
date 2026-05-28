@@ -1,7 +1,7 @@
 bl_info = {
     "name": "TrainSimTools",
     "author": "Pete Willard",
-    "version": (1, 3, 10),
+    "version": (1, 4, 5),
     "blender": (4, 3, 0),
     "location": "3D Viewport > N-Panel > TrainSimTools",
     "description": "Utilities for train-sim content: texture filename changer (with batch rename) and collection management tools.",
@@ -9,13 +9,40 @@ bl_info = {
 }
 
 
+import importlib
+import sys
+
+
+_MODULES = (
+    "bbox_tools",
+    "collection_tools",
+    "constants",
+    "panels",
+    "texture_tools",
+    "uv_tools",
+)
+
+for _module_name in _MODULES:
+    _full_name = f"{__name__}.{_module_name}"
+    if _full_name in sys.modules:
+        importlib.reload(sys.modules[_full_name])
+
 from .bbox_tools import TST_OT_ExportBoundingBoxCSV
 from .collection_tools import (
     OBJECT_OT_CreateInitialCollections,
     OBJECT_OT_SwapCollections,
     SwapCollectionsProperties,
 )
-from .panels import TXCH_PT_Panel, VIEW3D_PT_SwapCollections, VIEW3D_PT_TrainSimToolsInfo
+from .panels import (
+    TXCH_PT_Panel,
+    TXCH_PT_PathOptions,
+    TXCH_PT_RenameImages,
+    VIEW3D_PT_BoundingBoxTools,
+    VIEW3D_PT_SwapCollections,
+    VIEW3D_PT_TrainSimToolsInfo,
+    VIEW3D_PT_TrainSimToolsMain,
+    VIEW3D_PT_UVTools,
+)
 from .texture_tools import (
     TXCH_OT_InsertMappingLine,
     TXCH_OT_LoadMappingFromFile,
@@ -35,12 +62,17 @@ classes = (
     TXCH_OT_RenameImages,
     TXCH_OT_LoadMappingFromFile,
     TXCH_OT_InsertMappingLine,
+    VIEW3D_PT_TrainSimToolsMain,
     TXCH_PT_Panel,
+    TXCH_PT_PathOptions,
+    TXCH_PT_RenameImages,
     SwapCollectionsProperties,
     OBJECT_OT_SwapCollections,
     OBJECT_OT_CreateInitialCollections,
     VIEW3D_PT_SwapCollections,
     TST_OT_FixUVSimple,
+    VIEW3D_PT_UVTools,
+    VIEW3D_PT_BoundingBoxTools,
     VIEW3D_PT_TrainSimToolsInfo,
     TST_OT_ExportBoundingBoxCSV,
 )
