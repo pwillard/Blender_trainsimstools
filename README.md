@@ -2,6 +2,12 @@
 
 **TrainSimTools** is a Blender add-on providing some tools for OpenRails content creators.
 
+Version 1.4.5
+
+- Updated to work with Blender 5.x
+- User Interface updated so it's less chaotic
+- Changed how Collection Swapping works (now moves content instead of the Collection name) 
+
 Version 1.3.10
 
 - Mapping strategy now has a file chooser and dropdown for existing textures.
